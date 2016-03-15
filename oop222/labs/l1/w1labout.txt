@@ -1,0 +1,64 @@
+Script started on Sun 20 Sep 2015 07:42:04 PM EDT
+vzaguzin@matrix:~/oop/labs/l1> w1reflect
+SeneKEA Order Tool
+======================
+
+Please select from the following options :
+ 1 Shelf unit $2
+ 2 Desk $4
+ 3 Bed $4
+ 4 Chair $2
+ 5 Pay
+ 6 Cancel
+1
+Thank you
+Total increases by $2
+
+Please select from the following options :
+ 1 Shelf unit $2
+ 2 Desk $4
+ 3 Bed $4
+ 4 Chair $2
+ 5 Pay
+ 6 Cancel
+2
+Thank you
+Total increases by $4
+
+Please select from the following options :
+ 1 Shelf unit $2
+ 2 Desk $4
+ 3 Bed $4
+ 4 Chair $2
+ 5 Pay
+ 6 Cancel
+3
+Thank you
+Total increases by $4
+
+Please select from the following options :
+ 1 Shelf unit $2
+ 2 Desk $4
+ 3 Bed $4
+ 4 Chair $2
+ 5 Pay
+ 6 Cancel
+4
+Thank you
+Total increases by $2
+
+Please select from the following options :
+ 1 Shelf unit $2
+ 2 Desk $4
+ 3 Bed $4
+ 4 Chair $2
+ 5 Pay
+ 6 Cancel
+5
+Thank you
+Total is $12
+Finished... Exiting
+vzaguzin@matrix:~/oop/labs/l1> exit
+exit
+
+Script done on Sun 20 Sep 2015 07:42:45 PM EDT

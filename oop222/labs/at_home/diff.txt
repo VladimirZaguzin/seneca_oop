@@ -1,0 +1,8 @@
+
+In line number 3 of your output:
+The output should be:
+Please entere the number of course sections: 5
+But your output is: 
+Please enter the number of course sections: 5
+            ^
+------------|

@@ -1,0 +1,22 @@
+i used a Data encapsulation to create a class and 2 sets of variables - private and public:
+
+	class AccountNumber{
+
+	private:
+		char _name[MAX_NAME_LENGTH + 1];
+		int _bankCode;
+		int _branchCode;
+		int _accountNumber;
+		bool _validAccNumber;
+		void displayName() const;
+		void displayNumber() const;
+	public:
+		void setName(const char name[]);
+		void setAccountNumber(int bankCode, int branchCode, int accountNumber);
+		void display(bool display_number = false, bool display_name = false) const;
+		bool isValid() const;
+	};
+
+i sent a function to object, not an object to function 
+
+myNumber.setName(name);

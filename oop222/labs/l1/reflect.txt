@@ -1,0 +1,9 @@
+1) Dividing this solution into 2 modules allow us to modify each one separately. 
+reduse the size of each module and make it ease to read. 
+we will be able to use different prepared modules in future projects 
+
+2)I used a man gcc as a source
+-Wall -W means warnings, this option enables all warnings.
+-o Place output in file file. If -o is not specified, the default is to put an executable
+file in a.out.
+g++ -o prog1 prog1.cpp will give the out putt prog1.

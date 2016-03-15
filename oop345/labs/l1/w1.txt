@@ -1,0 +1,59 @@
+﻿Script started on Tue 19 Jan 2016 09:13:41 PM EST
+
+vzaguzin@matrix:~/oop/oop345/labs/l1> whoami
+vzaguzin
+vzaguzin@matrix:~/oop/oop345/labs/l1> cat w1.cpp
+#include "process.h"
+#include "CString.h"
+
+using namespace std;
+
+
+int main(int argc, char* argv[], char* env[]){
+
+/*
+	cout << "argc = " << argc << endl;
+
+	for (int arg = 0; arg < argc; arg++){
+		cout << "argv[" << arg << "]= -->" << argv[arg] << "<--" << endl;
+
+	}
+	*/
+
+	cout << "Command line :";
+	for (int arg = 0; arg < argc; arg++){
+		cout << argv[arg] << ' ';
+	}
+	cout << endl;
+
+     if (argc == 1){
+		cerr << "Insufficient number of arguments (min 1)" << endl;
+	}
+	else{
+		if (argc > 1 && argc <= MAX){
+			cout << "Maximum number of characters stored :" << MAX << endl;
+			
+			for (int arg = 1; arg < argc; arg++){
+				process(argv[arg]);
+			}
+		}               
+	}
+	
+
+
+	return 0;
+}
+
+vzaguzin@matrix:~/oop/oop345/labs/l1>g++ -std=c++0x -o w1 w1.cpp CString.cpp process.cpp
+vzaguzin@matrix:~/oop/oop345/labs/l1> w1 oop345 btp305
+Command line :w1 oop345 btp305 
+Maximum number of characters stored :3
+0 : oop
+1 : btp
+vzaguzin@matrix:~/oop/oop345/labs/l1> w1
+Command line :w1 
+Insufficient number of arguments (min 1)
+vzaguzin@matrix:~/oop/oop345/labs/l1> exit
+exit
+
+Script done on Tue 19 Jan 2016 09:14:54 PM EST

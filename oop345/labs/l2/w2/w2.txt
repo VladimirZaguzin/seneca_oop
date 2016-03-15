@@ -1,0 +1,320 @@
+Script started on Sun 07 Feb 2016 01:49:46 PM EST
+vzaguzin@matrix:~/oop/oop345/labs/l2/w2> whoami
+vzaguzin
+vzaguzin@matrix:~/oop/oop345/labs/l2/w2>  cat Station.h Station.cpp Stations.h Stations.cpp
+#pragma once
+#include <string>
+#include <fstream>
+#include <iostream>
+
+
+namespace w2 {
+
+	enum PassType{ PASS_STUDENT, PASS_ADULT, PASS_COUNT };
+
+	class Station{
+	
+		private:
+		
+		
+
+		unsigned passCounts[PASS_COUNT];
+
+		std::string name;
+	
+		public:
+
+		Station();
+
+		Station(std::fstream& is);
+
+		//void report();
+		//void inStock();
+		//void write(std::fstream& os);
+
+		void set(const std::string&, unsigned, unsigned); //- sets the instance variables to the values received in its parameters
+		void update(PassType, int);// - updates the number of passes - sold if negative, added if positive
+		unsigned inStock(PassType) const; //- returns the number of passes of the requested type
+		
+		const std::string& getName() const; //- returns a reference to a string object holding the name of the station
+
+		
+		
+	};
+}#include "Station.h"
+
+namespace w2 {
+
+	Station::Station(){
+
+	}
+
+	Station::Station(std::fstream& is){
+
+		getline(is, name, ';');/*read line untile ; */
+		std::cout << "name " << name << std::endl;/*print out name*/
+		is >> passCounts[PASS_STUDENT];
+		is >> passCounts[PASS_ADULT];
+
+		std::string s;
+		getline(is, s);
+
+		std::cout << "Student count =" << passCounts[PASS_STUDENT] << std::endl;
+		std::cout << "Adult count =" << passCounts[PASS_ADULT] << std::endl;
+		std::cout << std::endl;
+
+	}
+
+
+	void Station::set(const std::string& n, unsigned s, unsigned a){
+		name = n;
+		passCounts[PASS_STUDENT] = s;
+		passCounts[PASS_ADULT] = a;
+
+	}
+
+	void Station::update(PassType pt, int number){
+		passCounts[pt] += number;
+	}
+
+	unsigned Station::inStock(PassType pt) const{
+		return passCounts[pt];
+	}
+
+	const std::string& Station::getName() const{
+		return name;
+	}
+}#pragma once
+
+#include <iostream>
+
+#include "Station.h"
+
+namespace w2 {
+
+	class Stations{
+		
+	public:
+
+			Stations(const char*dataFile);
+			~Stations();
+			Stations();
+
+			void update();
+			void restock();
+			void report();
+			
+			std::string StationDataFile;
+
+	private:
+
+			int count;
+
+			Station* stations;
+
+	};
+} //namespace w2
+
+#include "Stations.h"
+
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+
+namespace w2 {
+
+	Stations::Stations(){
+		stations=nullptr;
+		count =0;
+
+	}
+
+	
+	Stations::Stations(const char*dataFile){
+		std::fstream is(dataFile, std::ios::in);
+
+
+		//if(!is.is_open){
+
+		if (!is){/*in case of a wrong filename*/
+			std::cerr << "cannot open file >" << dataFile << "<" << std::endl;
+
+			exit(2);
+
+			//return;
+		}
+		/*right filename*/
+		is >> count;
+		std::cout << "Station count = " << count << std::endl;
+
+		char c;
+		is >> c;
+		if (c == ';'){
+			std::string s;
+			getline(is, s, '\n');
+
+			stations = new Station[count];
+			for (int i = 0; i < count; i++){
+				stations[i] = Station(is);
+			}
+		}
+
+		else if (c != ';'){
+			std::cerr << "Not our data file >" << dataFile << "< expected ';', found >" << c << '<' << std::endl;
+			exit(3);
+		}
+
+
+		is.close();
+	}
+
+	Stations::~Stations(){
+		std::fstream os(StationDataFile);
+		os << count << ';' << std::endl;
+	//	for (int s = 0; s < count; s++){
+
+		//std::cout << stations[s]
+
+		delete[] stations;
+	
+	}
+	
+
+	void Stations::update(){
+	
+		std::cout<<"Passes Sold :\n-------------\n";
+
+		for (int i = 0; i < count; i++){
+		
+			std::cout << "Station : " << stations[i].getName() << std::endl;
+			int s, a;
+
+			std::cout << "Student Passes sold: ";
+			std::cin >> s;
+			std::cout << "Adult   Passes sold: ";
+			std::cin >> a;
+
+		std::cout<<std::endl;
+			int numA = stations[i].inStock(PASS_ADULT);
+			if (a < numA){
+				stations[i].update(PASS_ADULT, -a);
+			}
+
+			int numS = stations[i].inStock(PASS_STUDENT);
+			if (s< numS){
+				stations[i].update(PASS_STUDENT, -s);
+			}
+
+		}
+		
+	}
+
+	void Stations::restock(){
+
+		std::cout<<"Passes Added :\n--------------\n";
+
+		for (int i = 0; i < count; i++){
+
+			std::cout << "Station : " << stations[i].getName() << std::endl;
+			int s, a;
+
+			std::cout << "Student Passes added : ";
+			std::cin >> s;
+
+			std::cout << "Adult   Passes added : ";
+			std::cin >> a;
+
+		std::cout<<std::endl;
+			int numA = stations[i].inStock(PASS_ADULT);
+			stations[i].update(PASS_ADULT, +a);
+
+
+			int numS = stations[i].inStock(PASS_STUDENT);
+			stations[i].update(PASS_STUDENT, +s);
+
+		}
+
+	};
+
+	void Stations::report(){
+		std::cout<< "Passes in Stock : Student Adult" << std::endl << "-------------------------------" << std::endl;
+		for (int s = 0; s < count; s++){
+			std::cout << std::setw(17)<<std::left<< stations[s].getName() << " "
+				<< std::setw(7)<< stations[s].inStock(PASS_STUDENT) << " "
+				<< std::setw(7)<< stations[s].inStock(PASS_ADULT) << std::endl;
+
+		}
+
+	};
+
+}
+vzaguzin@matrix:~/oop/oop345/labs/l2/w2> whoami[4Plsg++ -std=c++0x -Wall -o w2 Station.cpp Stations.cpp w2.cpp 
+Stations.cpp: In member function ‘void w2::Stations::restock()’:
+Stations.cpp:112:8: warning: unused variable ‘numA’ [-Wunused-variable]
+Stations.cpp:116:8: warning: unused variable ‘numS’ [-Wunused-variable]
+vzaguzin@matrix:~/oop/oop345/labs/l2/w2> w2 Stations.dat
+
+Command Line : w2 Stations.dat 
+Station count = 4
+name Spadina
+Student count =100
+Adult count =200
+
+name Bathurst
+Student count =200
+Adult count =300
+
+name Keele
+Student count =100
+Adult count =100
+
+name Bay
+Student count =200
+Adult count =200
+
+Passes Sold :
+-------------
+Station : Spadina
+Student Passes sold: 5
+Adult   Passes sold: 8
+
+Station : Bathurst
+Student Passes sold: 34
+Adult   Passes sold: 52
+
+Station : Keele
+Student Passes sold: 21
+Adult   Passes sold: 13
+
+Station : Bay
+Student Passes sold: 67
+Adult   Passes sold: 65
+
+Passes Added :
+--------------
+Station : Spadina
+Student Passes added : 29
+Adult   Passes added : 52
+
+Station : Bathurst
+Student Passes added : 113
+Adult   Passes added : 61
+
+Station : Keele
+Student Passes added : 51
+Adult   Passes added : 52
+
+Station : Bay
+Student Passes added : 109
+Adult   Passes added : 107
+
+Passes in Stock : Student Adult
+-------------------------------
+Spadina           124     244    
+Bathurst          279     309    
+Keele             130     139    
+Bay               242     242    
+vzaguzin@matrix:~/oop/oop345/labs/l2/w2> exit
+exit
+
+Script done on Sun 07 Feb 2016 01:51:36 PM EST

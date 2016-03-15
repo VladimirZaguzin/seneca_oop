@@ -1,0 +1,10 @@
+
+In line number 110 of your output:
+The output should be:
+Not found!
+But your output is: 
+v------------------->
+^
+|
+Professors character ASCII code: hex(4e), dec(78)
+un-matched character ASCII code: hex(76), dec(118)

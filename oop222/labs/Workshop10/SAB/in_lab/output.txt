@@ -1,0 +1,13 @@
+28 is valid
+28 is invalid
+a is invalid
+44 is invalid
+22.5 is valid
+Z is invalid
+12 is invalid
+15.8 is invalid
+M is valid
+30 is valid
+21.6 is valid
+m is valid
+

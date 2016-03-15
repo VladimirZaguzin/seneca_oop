@@ -1,0 +1,190 @@
+
+#include "NonPerishable.h"
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstring>
+#include <iomanip>
+#include <climits>
+
+namespace sict{
+
+
+   std::fstream& NonPerishable::save(std::fstream& file)const{
+	   /*N,1234,4L Milk,3.99,0,2<Newline>*/
+	   /*sku, name, price, taxed, quantity*/
+	   file << "N," << sku() << "," << name() << "," << price() << ',' << taxed() << "," << quantity() << endl;
+      return file;
+   }
+
+   std::fstream& NonPerishable::load(std::fstream& file){
+	   
+	   /*1234,4L Milk,3.99,0,2<Newline>*/
+	   /*sku, name, price, taxed, quantity*/
+
+	   //https://github.com/Seneca-OOP244/FP_MS3/blob/master/ItemTester.cpp thx for this code
+
+	   char isku[MAX_SKU_LEN];
+	   
+	   char iname[20];
+	   double iprice;
+	   bool itaxed;
+	   int iquantity;
+	 
+
+	    file.getline(isku, MAX_SKU_LEN, ',');
+		sku(isku);
+		file.getline(iname, 20, ',');
+		name(iname);
+		file >> iprice;
+		price(iprice);
+		file.ignore();
+		file >> itaxed;
+		taxed(itaxed);
+		file.ignore();
+		file >> iquantity;
+		quantity(iquantity);
+		file.close();
+
+      return file;
+   }
+
+   std::ostream&  NonPerishable::write(std::ostream& os, bool linear)const{
+
+	   /*
+	    1234   |Candle              |   1.23| t |  38|    52.82|
+		SKU:            left justified in MAX_SKU_LEN characters
+		Name:           left justified 20 characters wide, trimmed to 20 if longer than 20 characters.
+		Price:          right justified, 2 digits after decimal point 7 chars wide
+		Taxed:          “t” if it is taxed, space if it is not taxed, 3 chars wide “t” at centre
+		Quantity:       right justified 4 characters wide
+		Cost:                 total cost, considering quantity and tax; same format as price, 9 chars wide
+		One Bar and NO NEW LINE
+
+
+		cost() = (taxed()) ? price() + price()*TAX : price();
+	    */
+      if (_err.isClear()){
+	 if (linear){
+	    os.fill(' ');
+			os << setw(MAX_SKU_LEN) << left << sku() << "|";
+	    os << setw(20) << left << name() << "|";
+			os << setw(7) << right << price() << "|";
+	    os.precision(2);
+			(taxed()) ? os << setw(3) << fixed << right << "t " << "|" : os << setw(3) << fixed << ' ' << "|";
+			os << setw(4) << right << quantity() << "|";
+			os << setw(9) << fixed << right << cost()*quantity() << "|";
+			os.precision(2);
+	 }
+	 else{
+			 /* Name:
+				Candle
+				Sku: 1234
+				Price: 1.23
+				Price after tax: 1.39   
+				Quantity: 38
+				Total Cost: 52.82 <Newline>
+				
+				OR if not taxed
+				
+				Sku: 1234
+				Name: Candle
+				Price: 1.23
+				Price after tax: N/A   
+				Quantity: 38
+				Total Cost: 46.74 <Newline>
+
+			*/
+			 (taxed()) ? os << "Name:" << endl << name() << endl << "Sku: " << sku() << endl : os << "Sku: " << sku() << endl << "Name:" << name() << endl;
+				 os << "Price: " << price() << endl << "Price after tax: ";
+					(taxed()) ? os << price() + price() * TAX << endl : os << "N/A" << endl;
+					os << "Quantity: " << quantity() << endl << "Total Cost: " << quantity()  *  cost() << endl;
+			}
+      }
+      else{
+	 os << _err.message();
+      }
+      return os;
+   }
+
+
+
+   std::istream& NonPerishable::read(std::istream& istr){
+  
+	   char buf[2000];
+	   int ibuf;
+	   double dbuf;
+	   char ctax;
+
+	  _err.clear();
+
+
+	  if (istr.fail()) {
+		  istr.setstate(ios::failbit);
+	  }
+	  else{
+		  cout << "NonPerishable Item Entry:" << endl;
+		  cout << "Sku: ";
+		  istr.getline(buf, MAX_SKU_LEN+1);
+		  sku(buf);
+		  cout << "Name: " << endl;
+		  istr.getline(buf, 20, '\n');
+		  name(buf);
+		  cout << "Price: ";
+		  istr >> dbuf;
+
+		  if (!istr.fail()) {
+			  
+			  
+			  price(dbuf);
+
+			  cout << "Taxed: ";
+			  istr >> ctax;
+			  if (ctax == 'y'){
+				  taxed(1);
+			  }
+			  else if (ctax == 'n'){
+				  taxed(0);
+			  }
+			  else{
+				  istr.setstate(ios::failbit);
+			  }
+
+				  if (!istr.fail()) {
+					  cout << "Quantity: ";
+					  istr >> ibuf;
+					  quantity(ibuf);
+						  if (istr.fail()) {
+							  _err.message("Invalid Quantity Entry");
+						  }
+				  }
+				  else {
+					  _err.message("Invalid Taxed Entry, (y)es or (n)o");
+				  }
+
+		  }
+		  else { 
+			  _err.message("Invalid Price Entry");
+			  istr.ignore(INT_MAX);
+		  }
+	  }
+      return istr;
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

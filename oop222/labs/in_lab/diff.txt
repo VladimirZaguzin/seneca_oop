@@ -1,0 +1,8 @@
+
+In line number 18 of your output:
+The output should be:
+Testing the contact with a looooong name
+But your output is: 
+Testing the contact with a looooong nameô
+                                        ^
+----------------------------------------|

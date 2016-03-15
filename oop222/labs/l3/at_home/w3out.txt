@@ -1,0 +1,27 @@
+Script started on Wed 07 Oct 2015 10:54:41 AM EDT
+vzaguzin@matrix:~/oop/labs/l3/at_home> w3
+Weather Data
+=====================
+Days of Weather: 3
+Enter date: Oct/1
+Enter high: 15
+Enter low : 10
+Enter date: Nov/13
+Enter high: 10
+Enter low : 1.1
+Enter date: Dec/15
+Enter high: 5.5
+Enter low : -6.5
+
+Weather report:
+======================
+Oct/1_______15.0__10.0
+Nov/13______10.0___1.1
+Dec/15_______5.5__-6.5
+
+Enter the date you are looking for: Nov/13
+Low temperature : 1.1
+vzaguzin@matrix:~/oop/labs/l3/at_home> exit
+exit
+
+Script done on Wed 07 Oct 2015 10:55:18 AM EDT

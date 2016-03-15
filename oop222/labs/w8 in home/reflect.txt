@@ -1,0 +1,14 @@
+1.	Why was it not necessary to create an isOut() member function? 
+Because we made it virtual in the beginning and when we called it in superhero the last version of it was call ( from hero)
+2.	Why it was not necessary to overload operaror<< to print Hero and SuperHero with cout?4
+We made a cout in base class (gamecharacter) to be able to print out information via display functions 
+3.	How would you modify your solution to make the strength member attribute private?
+I would add a accessor function to return strength
+4.	How would your solution need to be modified in order for the SuperHero::display member function object to display the deceased SuperHero’s name.  For example, the function would be modified to print “(name) the deceased superhero!”  Explain in plain English.
+<< this->_name << the deceased superhero!  
+This-> name will take a variable name from object created by superhero constrictor
+5.	View line 28 and 29 in w8_in_lab.cpp file. 
+  gcp = (m > d) ? &m: &d;
+  cout << *gcp << " is stronger!" << endl;
+How the stronger hero is displayed here?
+	We compared is m._s trength (was = 0 in that moment)  > than d._s trength (was = 5 in that moment)  or not. Because d was greater them m we sent a reference to it to gcp and then displayed it like “Dad is stronger!” 

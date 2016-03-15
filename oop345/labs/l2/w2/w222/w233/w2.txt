@@ -1,0 +1,318 @@
+Script started on Tue 31 Mar 2015 11:10:36 PM EDT
+[01;34mW21$[00m whoami
+omytryniuk
+[01;34mW21$[00m at[K[Kcat Station.h Station.cpp Stations.cpp Stations.h
+// #include "Stations.h"
+namespace w2 {
+
+enum PassType{ student, adult};	
+
+class Station {
+	private:
+		std::string name;
+		unsigned int StudPass;
+		unsigned int AdultPass; 
+	public:
+		Station();
+		void set(const std::string&, unsigned, unsigned);
+		void display() const;
+		void update(PassType, int);
+		unsigned inStock(PassType) const;
+		const std::string& getName() const;
+};
+
+}// Station.cpp
+ #include <iostream>
+
+
+ #include "Station.h"
+ #include <string>
+using namespace std;
+
+namespace w2 {
+
+	Station::Station() {
+			name = "";
+			StudPass = 0;
+			AdultPass = 0;
+			//cout << "C" <<endl;
+
+
+
+		}
+
+	void Station::set(const std::string& s, unsigned st, unsigned a) {
+		//cout << "Setting....." << s <<" " << st << " " << a << endl;
+		//cout << "name " <<name;
+		name = s;
+		StudPass = st;
+		AdultPass = a;
+
+
+	}
+
+	//void Station::display() const{
+	//cout << "Display" << "Name: " << name << " Studpass: " << StudPass << " AdultPass: " << AdultPass << endl;
+   //}
+
+	const std::string& Station::getName() const{
+	
+		return name;							
+	
+	}
+
+	void Station::update(PassType type, int number){
+		
+		(type == 0)?StudPass += number:	AdultPass += number;		
+	}
+
+	unsigned Station::inStock(PassType type) const{
+		
+				
+		return (type == 0)?StudPass:AdultPass;		
+	
+	}
+	
+		
+
+}// Stations.cpp
+ #include <iostream>
+#include "Stations.h"
+#include <iomanip>  
+//#include "Station.h"
+using namespace std;
+ #include <fstream>
+
+namespace w2 {
+
+Stations::Stations(){
+        total_stations = 0 ;
+        stationTable = nullptr;                              
+        filename = "";                                  
+        d = ' ';                                
+    }
+
+Stations::Stations(const char* name) {
+    filename = name; 
+	cout << "Name of the file is " << filename << endl;
+		
+             
+       
+	fstream f(name);
+	
+     if (f.is_open()) {
+     	f >> total_stations;
+        f>>d;
+     	cout << "Total Station " << total_stations <<endl;
+
+     	stationTable = nullptr;
+     	stationTable = new Station[total_stations];
+     
+
+for(int i=0; i < total_stations; i++) {                      
+                    string stationname;
+                    int StudPass;
+                    int AdultPass;                                  
+                    
+                    
+                    getline(f,stationname,d);                   
+                    f >> StudPass;                         
+                    f >> AdultPass;   
+                    stationTable[i].set(stationname,StudPass,AdultPass);  
+                      // stationTable[i].display();    
+
+ }
+     
+     }
+
+     else 
+    	cout << "Not" << endl;
+
+}
+
+
+
+
+
+void Stations::update() const{
+        
+        std::cout << "\nPasses Sold :\n-------------";
+
+        
+        
+        for(unsigned i=0 ; i < total_stations; i++){
+        
+            unsigned number = 0;              
+            
+            std::cout << stationTable[i].getName() << std::endl;     
+          
+            std::cout << " Student Passes sold : ";
+            std::cin >> number;
+         
+            stationTable[i].update(student,(number*(-1)));           
+        
+            number = 0;
+                  
+            std::cout << " Adult   Passes sold : ";
+            std::cin >> number;
+           
+            stationTable[i].update(adult,(number*(-1))); 
+        //    stationTable[i].display();
+                        
+            
+        }
+        
+    }
+
+void Stations::restock() const{
+        
+        std::cout << "\nPasses Added :\n-------------";
+
+        for(unsigned i=0 ; i < total_stations ; i++){
+        
+            unsigned number = 0;                
+            std::cout << stationTable[i].getName() << std::endl;         
+                
+           
+            std::cout << " Student Passes added : ";
+            std::cin >> number;
+            
+            stationTable[i].update(student,number);                     
+        
+            number = 0;
+                   
+            std::cout << " Adult   Passes added : ";
+            std::cin >> number;
+                 
+            stationTable[i].update(adult,number);  
+                              
+        }
+        
+    }
+
+
+void Stations::report() const{
+        
+        std::cout << "\nPasses in Stock : Student Adult\n-------------------------------";
+        
+        for(unsigned i=0 ; i < total_stations; i++)
+            std::cout << std::left << std::setw(18) << stationTable[i].getName() << std::right << std::setw(8) << stationTable[i].inStock(student) << std::setw(6) << stationTable[i].inStock(adult);
+            
+        std::cout << "\n-------------------------------" << std::endl;  
+        
+    }
+
+Stations::~Stations(){
+        
+        std::ofstream file(filename);                   
+
+        if (file.is_open()) {                   
+            
+            file << total_stations << d;                
+            
+            for(unsigned i = 0; i < total_stations ; i++){
+            
+                file << stationTable[i].getName() << d << stationTable[i].inStock(student) << " " << stationTable[i].inStock(adult);   //writes station name, delimiter character, number of student passes, space ,number of adult passes 
+            
+            }
+            
+          
+            
+        }
+                                     
+        
+        if(stationTable){                                               
+        
+            delete [] stationTable;                                      
+            stationTable = nullptr;                                      
+        
+        }
+        
+    }
+
+
+}
+
+
+
+//Stations.h
+#pragma once
+#include "Station.h"
+
+namespace w2 {
+
+
+
+class Stations{
+	
+		Station* stationTable;									
+		int total_stations;
+		char d;			
+		std::string filename;						
+	
+	
+		public:
+		
+		Stations();											
+		Stations(const char*);								
+		void update() const;								
+		void restock() const;								
+		void report() const;								
+	    ~Stations();
+		
+	};
+
+}[01;34mW21$[00m g++ -o w2 w2.cpp Station.cpp Stations/[K.cpp
+[01;34mW21$[00m w2 Stations.dat
+
+Command Line : w2 Stations.dat 
+Name of the file is Stations.dat
+Total Station 4
+
+Passes Sold :
+-------------
+Spadina
+ Student Passes sold : 5
+ Adult   Passes sold : 8
+
+Bathurst
+ Student Passes sold : 34
+ Adult   Passes sold : 52
+
+Keele
+ Student Passes sold : 21
+ Adult   Passes sold : 13
+
+Bay
+ Student Passes sold : 67
+ Adult   Passes sold : 65
+
+Passes Added :
+-------------
+Spadina
+ Student Passes added : 29
+ Adult   Passes added : 52
+
+Bathurst
+ Student Passes added : 113
+ Adult   Passes added : 5 61
+
+Keele
+ Student Passes added : 51
+ Adult   Passes added : 52
+
+Bay
+ Student Passes added : 109
+ Adult   Passes added : 107
+
+Passes in Stock : Student Adult
+-------------------------------
+Spadina              100   200
+Bathurst             200   300
+Keele                100   100
+Bay                  200   200
+-------------------------------
+[01;34mW21$[00m exit
+exit
+
+Script done on Tue 31 Mar 2015 11:12:07 PM EDT

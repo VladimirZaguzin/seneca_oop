@@ -1,0 +1,202 @@
+Script started on Mon 22 Feb 2016 05:39:45 PM EST
+vzaguzin@matrix:~/oop/oop345/labs/l3> whoami
+vzaguzin
+vzaguzin@matrix:~/oop/oop345/labs/l3> cat w4.cpp KVList.h
+// Workshop 4 - Templates
+// w4.cpp
+
+#include <iostream>
+#include <iomanip>
+#include "KVList2.h"
+
+template <typename K, typename V, int N>
+void display(const std::string& msg, const KVList<K, V, N>& list, int w) {
+    std::cout << msg;
+    for (int i = 0; i < list.size(); i++)
+	std::cout << std::setw(w) << list.key(i)
+	<< " : " << list.value(i) << std::endl;
+}
+
+
+
+int main(int argc, char** argv) {
+    if (argc != 1) {
+	std::cerr << argv[0] << ": too many arguments\n";
+	return 1;
+    }
+
+    int width;
+    bool keepreading;
+    std::cout << std::fixed << std::setprecision(2);
+
+    std::cout << "\nInventory\n=========\n";
+    KVList <std::string, double, 5> inventory;
+    std::string str;
+    double price;
+
+    keepreading = true;
+    do {
+	std::cout << "Product : ";
+	getline(std::cin, str);
+	if (str.compare("quit") == 0) {
+	    keepreading = false;
+	} else {
+	    std::cout << "Price : ";
+	    std::cin >> price;
+	    std::cin.ignore();
+	    inventory.add(str, price);
+	}
+    } while(keepreading);
+    display("\nPrice List\n----------\n", inventory, 13);
+
+    std::cout << "\nCorrections\n-----------\n";
+    keepreading = true;
+    do {
+	std::cout << "Product : ";
+	getline(std::cin, str);
+	if (str.compare("quit") == 0) {
+	    keepreading = false;
+	} else {
+	    int i = inventory.find(str);
+	    if (i != -1) {
+		std::cout << "Price : ";
+		std::cin >> price;
+		std::cin.ignore();
+		inventory.replace(i, str, price);
+	    }
+	}
+    } while(keepreading);
+    display("\nPrice List\n----------\n", inventory, 13);
+
+    std::cout << "\nGlossary\n========\n";
+    KVList <std::string, std::string, 5> glossary;
+    std::string key, definition;
+
+    keepreading = true;
+    do {
+	std::cout << "Key : ";
+	getline(std::cin, key);
+	if (key.compare("quit") == 0) {
+	    keepreading = false;
+	} else {
+	    std::cout << "Definition : ";
+	    getline(std::cin, definition);
+	    glossary.add(key, definition);
+	}
+    } while(keepreading);
+    display("\nEntries\n-------\n", glossary, 5);
+}
+#if 0
+
+#endif
+
+template<classs K, Class V, int N>
+
+class KVList {
+
+	K k[N];
+	V v[N];
+	
+	size_t count;
+	public:
+	
+	KVList():count(0){
+	
+	} //default constructor - adopts a safe empty state
+	
+	size_t size(){
+	
+	
+	return count
+	} const //- returns the number of entires in the key-value list
+	
+	const K& key(int i) const {
+	
+	return k[i];
+	} //- returns an unmodifiable reference to the key of element i in the list
+	
+	const V& value(int i) const{
+	
+	return v[i];
+	}
+	// - returns an unmodifiable reference to the value of element i in the list
+	
+	KVList& add(const K&, const V&){
+	if(count < N){
+		k[count] == kk;
+		v[count] == vv;
+		count++;
+	}
+	
+	return* this;
+	}// - adds a new element to the list if room exists and returns a reference to the current object, does nothing if no room exists
+	
+	int find(const K& k) const{
+		for(int ret = 0; ret < count; ret++){
+			if(kk==k[ret])
+				return ret;
+		}
+		return 0;
+	
+	} //- returns the index of the first element in the list with a key equal to k - defaults to 0
+	
+	KVList& replace(int i, const K& k, const V& v){
+		if(i <count){
+		k[i]==kk, v[i]==vv;
+		
+		}
+		return* this;
+	}//- replaces element i in the list with the key and value received and returns a reference to the current object Main Program
+													
+
+}vzaguzin@matrix:~/oop/oop345/labs/l3> g++ -o w4 w4.cpp[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcat w4.cpp KVList.hwhoami[K[2Pexitw3 gutenberg_shakespeareg++ -o w3 -std=c++0x w3.cpp Text.cpp[12Pw3 gutenberg_shakespeareexit[Kwhoamicat w4.cpp KVList.h[Kcat w4.cpp KVList.hwhoami[K[2Pexitw3 gutenberg_shakespeareg++ -o w3 -std=c++0x w3.cpp Text.cpp[10Pcat w3.cpp Text.h[C[C[C[C[C[C[C[C[Cwhoami[Kvi lab[4Plscp lab lab_bpls[Kcp lab lab_bpls[Kvi labwhoamicat w3.cpp Text.h Text.cpp[10@g++ -o w3 -std=c++0x w3.cpp[C[C[C[C[C[C[C[C[C[12Pw3 gutenberg_shakespeareexit[Kwhoamicat w4.cpp KVList.h[Kcat w4.cpp KVList.hwhoami[K[2Pexitw3 gutenberg_shakespeareg++ -o w3 -std=c++0x w3.cpp Text.cpp[12Pw3 gutenberg_shakespeareexit[Kwhoamicat w4.cpp KVList.h[Kg++ -o w4 w4.cpp[C[1@ [1@-[1@s[1@t[1@d[1@=[1@c[1@+[1@+[1@0[1@x
+vzaguzin@matrix:~/oop/oop345/labs/l3> w4
+
+Inventory
+=========
+Product : Pizza
+Price : 4.49
+Product : Pierogi
+Price : 2.56
+Product : Potato Chips
+Price : 2.29
+Product : Black Tea
+Price : 4.49
+Product : quit
+
+Price List
+----------
+        Pizza : 4.49
+      Pierogi : 2.56
+ Potato Chips : 2.29
+    Black Tea : 4.49
+
+Corrections
+-----------
+Product : Black Tea
+Price : 5.29
+Product : quit
+
+Price List
+----------
+        Pizza : 4.49
+      Pierogi : 2.56
+ Potato Chips : 2.29
+    Black Tea : 5.29
+
+Glossary
+========
+Key : CPU
+Definition : central processing unit
+Key : ALU
+Definition : arithmetic logic unit
+Key : quit
+
+Entries
+-------
+  CPU : central processing unit
+  ALU : arithmetic logic unit
+vzaguzin@matrix:~/oop/oop345/labs/l3> exit
+exit
+
+Script done on Mon 22 Feb 2016 05:42:28 PM EST

@@ -1,0 +1,18 @@
+﻿Build started 28/09/2015 11:08:15 PM.
+     1>Project "C:\Users\Vladimir\Desktop\w2_at_home\w2_at_home.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AccountNumber.cpp w2_at_home.cpp
+         AccountNumber.cpp
+     1>c:\users\vladimir\desktop\w2_at_home\accountnumber.cpp(23): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
+         Generating Code...
+         Compiling...
+         w2_at_home.cpp
+     1>c:\users\vladimir\desktop\w2_at_home\w2_at_home.cpp(46): error C2660: 'sict::AccountNumber::display' : function does not take 0 arguments
+     1>c:\users\vladimir\desktop\w2_at_home\w2_at_home.cpp(48): error C2660: 'sict::AccountNumber::display' : function does not take 1 arguments
+         Generating Code...
+     1>Done Building Project "C:\Users\Vladimir\Desktop\w2_at_home\w2_at_home.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.49

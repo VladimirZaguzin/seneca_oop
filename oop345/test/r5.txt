@@ -1,0 +1,42 @@
+Script started on Mon 22 Feb 2016 11:45:29 PM EST
+vzaguzin@matrix:~/oop/oop345/test> r51
+program r51
+
+X ctor()
+X (120) ctor
+LINE 90: x = y;
+assignment operator size,rhs.size=0,120
+LINE 93: X<double> z(x);
+copy ctor rhs.size=120
+assignment operator size,rhs.size=3075058571,120
+LINE 96: y = std::move(x);
+move assignment operator size,rhs.size=120,120
+x:size=0 (0 BYTES)
+y:size=120 (960 BYTES)
+LINE 101: x = std::move(y);
+move assignment operator size,rhs.size=0,120
+x:size=120 (960 BYTES)
+y:size=0 (0 BYTES)
+LINE 106: y = std::move(x);
+move assignment operator size,rhs.size=0,120
+x:size=0 (0 BYTES)
+y:size=120 (960 BYTES)
+LINE 111: x = std::move(y);
+move assignment operator size,rhs.size=0,120
+x:size=120 (960 BYTES)
+y:size=0 (0 BYTES)
+LINE 116: X<double> A(std::move(x));
+move ctor rhs.size=120
+move assignment operator size,rhs.size=134514416,120
+x:size=0 (0 BYTES)
+A:size=120 (960 BYTES)
+LINE 121: MAIN OVER
+
+X dtor, size=120
+X dtor, size=120
+X dtor, size=0
+X dtor, size=0
+vzaguzin@matrix:~/oop/oop345/test> exit
+exit
+
+Script done on Mon 22 Feb 2016 11:45:41 PM EST

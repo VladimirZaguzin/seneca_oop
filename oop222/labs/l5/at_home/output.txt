@@ -1,0 +1,25 @@
+Script started on Tue 20 Oct 2015 11:29:21 PM EDT
+vzaguzin@matrix:~/oop/labs/l5/at_home> w5
+Empty Contact
+----------------------------------------
+Enter Contact information: 
+Contact Name: John Doe
+Please enter 3 phone numbers: 
+1: Home, 123 1234567
+2: Cell, 234 2345678
+3: Work, 345 3456789
+John Doe
+Home..........., 123 123-4567
+Cell..........., 234 234-5678
+Work..........., 345 345-6789
+----------------------------------------
+Please wait..........
+John Doe
+Home..........., 123 123-4567
+Cell..........., 234 234-5678
+Work..........., 345 345-6789
+----------------------------------------
+vzaguzin@matrix:~/oop/labs/l5/at_home> exit
+exit
+
+Script done on Tue 20 Oct 2015 11:29:50 PM EDT

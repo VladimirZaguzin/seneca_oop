@@ -1,0 +1,16 @@
+1. Explain how allocateAndCopy() function works in PhoneNumber.cpp
+
+
+
+1)we check is data set valit or not by isValid fnction and return bool value true\false
+2)if it is valid we set all this values into the object. also we dynamicly allocat memmory for a char array(_type)
+3)as a return we will get true or false 
+
+2. Explain why usually a copy constructor and assignment operator is 
+needed when a class uses dynamic memory allocation to hold its resources
+
+
+
+
+when we need to cope not a pointer but we want to copy wnat pinet points to.
+standart method would not allow us to do it, we need a deep copy

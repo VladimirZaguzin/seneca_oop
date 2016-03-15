@@ -1,0 +1,41 @@
+Script started on Tue 29 Sep 2015 11:01:46 AM EDT
+vzaguzin@matrix:~/oop/labs/l2/w2_at_home> w2h
+
+When program asks for your name enter "John" (note that J is capital)
+Then enter the following sequence of numbers exactly as shown below.
+If you make a mistake, press CTRL-C, exit and cancel the submission
+and start over.
+DO NOT press BACKSPACE to correct the mistake, it will not work. 
+Here are the numbers for testing the program: 
+A: 1 123 12345
+B: 123 123 12345
+Press <ENTER> to start
+Bank account app
+===================
+
+Please enter your name: John
+please enter your bank account ,branch code, and account number as follows:
+999 999 99999: 1 123 12345
+John does not have a valid account number.
+-------------
+John does not have a valid account number.
+-------------
+John does not have a valid account number.
+-------------
+John does not have a valid account number.
+Invalid account number, (999 999 9999), try again: 123 123 12345
+John does not have a valid account number.
+-------------
+John does not have a valid account number.
+-------------
+John does not have a valid account number.
+-------------
+John does not have a valid account number.
+Thank you!
+vzaguzin@matrix:~/oop/labs/l2/w2_at_home> ls
+[0m[00mAccountNumber.cpp[0m  [01;34mDebug[0m     [00mfperr.txt[0m    [00mw2Horg.txt[0m  [00mw2_at_home.cpp[0m  [00mw2_at_home.v12.suo[0m  [00mw2_at_home.vcxproj.filters[0m  [00;32mw2h[0m
+[00mAccountNumber.h[0m    [00mdiff.txt[0m  [00mreflect.txt[0m  [00mw2Hout.txt[0m  [00mw2_at_home.sln[0m  [00mw2_at_home.vcxproj[0m  [00mw2_at_home_prof.cpp[0m
+vzaguzin@matrix:~/oop/labs/l2/w2_at_home> pico AccountNumber.h[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kexit
+exit
+
+Script done on Tue 29 Sep 2015 11:02:25 AM EDT

@@ -1,0 +1,10 @@
+1)What is meant by a safe empty state?
+safe empty state is a default value for an object to avoid a mistakes because of random value in memory
+
+a. What is the safe empty state of the Enrollment class? Please describe in English words, not code.
+we set all number valuse to 0 and all string to empty.this state is unrealistic for this object 
+
+b. Is this a realistic empty state? Explain why or why not.
+it's not a realistic empty state, we can't use year = 0 in real world, same as empty name and code name
+2) Describe a case where having multiple Enrollment constructors would simplify the code of clients that use it.
+when we need to create and fill up a lot of objects with repeating data, in this case such constructors would simplify the code

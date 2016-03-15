@@ -1,0 +1,19 @@
+1)	What happens to dynamic memory if it is not deallocated?
+
+	We will get a memory leak, because OS would not be able to get access to allocated memory 
+	
+
+2)	What are the two methods of formatting IO stream data?
+
+	we can use iomanip or functions from ostream.  iomanip is a manipulator; 
+	we can use such command like - left, right to make a left or right justify,
+	setprecision(), setfill(), setw() or flush
+	in ostream we can use - precision(), width(), fill(), setf or unset to format output
+
+
+3)	Why was dynamic memory required in the main() function of w3_in_lab.cpp to build the solution? 
+	we did it to hold more then 1 set  of data
+
+	
+	1)to dynamically allocate memory based on number of days of weather	
+	2) to delete it after we used programm

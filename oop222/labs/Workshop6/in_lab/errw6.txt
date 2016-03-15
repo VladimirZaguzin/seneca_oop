@@ -1,0 +1,27 @@
+w6_in_lab.cpp: In function ‘int main()’:
+w6_in_lab.cpp:20:11: error: cannot bind ‘std::ostream {aka std::basic_ostream<char>}’ lvalue to ‘std::basic_ostream<char>&&’
+/usr/include/c++/4.6/ostream:581:5: error:   initializing argument 1 of ‘std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&&, const _Tp&) [with _CharT = char, _Traits = std::char_traits<char>, _Tp = sict::Account]’
+w6_in_lab.cpp:21:11: error: no match for ‘operator+’ in ‘B + C’
+w6_in_lab.cpp:21:11: note: candidates are:
+/usr/include/c++/4.6/bits/stl_iterator.h:327:5: note: template<class _Iterator> std::reverse_iterator<_Iterator> std::operator+(typename std::reverse_iterator<_Iterator>::difference_type, const std::reverse_iterator<_Iterator>&)
+/usr/include/c++/4.6/bits/stl_iterator.h:1112:5: note: template<class _Iterator> std::move_iterator<_Iterator> std::operator+(typename std::move_iterator<_Iterator>::difference_type, const std::move_iterator<_Iterator>&)
+/usr/include/c++/4.6/bits/basic_string.h:2306:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const std::basic_string<_CharT, _Traits, _Alloc>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+/usr/include/c++/4.6/bits/basic_string.tcc:694:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&)
+/usr/include/c++/4.6/bits/basic_string.tcc:710:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(_CharT, const std::basic_string<_CharT, _Traits, _Alloc>&)
+/usr/include/c++/4.6/bits/basic_string.h:2343:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+/usr/include/c++/4.6/bits/basic_string.h:2359:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const std::basic_string<_CharT, _Traits, _Alloc>&, _CharT)
+/usr/include/c++/4.6/bits/basic_string.h:2371:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(std::basic_string<_CharT, _Traits, _Alloc>&&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+/usr/include/c++/4.6/bits/basic_string.h:2377:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const std::basic_string<_CharT, _Traits, _Alloc>&, std::basic_string<_CharT, _Traits, _Alloc>&&)
+/usr/include/c++/4.6/bits/basic_string.h:2383:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(std::basic_string<_CharT, _Traits, _Alloc>&&, std::basic_string<_CharT, _Traits, _Alloc>&&)
+/usr/include/c++/4.6/bits/basic_string.h:2395:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const _CharT*, std::basic_string<_CharT, _Traits, _Alloc>&&)
+/usr/include/c++/4.6/bits/basic_string.h:2401:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(_CharT, std::basic_string<_CharT, _Traits, _Alloc>&&)
+/usr/include/c++/4.6/bits/basic_string.h:2407:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(std::basic_string<_CharT, _Traits, _Alloc>&&, const _CharT*)
+/usr/include/c++/4.6/bits/basic_string.h:2413:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(std::basic_string<_CharT, _Traits, _Alloc>&&, _CharT)
+w6_in_lab.cpp:23:11: error: cannot bind ‘std::ostream {aka std::basic_ostream<char>}’ lvalue to ‘std::basic_ostream<char>&&’
+/usr/include/c++/4.6/ostream:581:5: error:   initializing argument 1 of ‘std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&&, const _Tp&) [with _CharT = char, _Traits = std::char_traits<char>, _Tp = sict::Account]’
+w6_in_lab.cpp:24:12: error: no match for ‘operator+=’ in ‘B += C’
+w6_in_lab.cpp:25:11: error: cannot bind ‘std::ostream {aka std::basic_ostream<char>}’ lvalue to ‘std::basic_ostream<char>&&’
+/usr/include/c++/4.6/ostream:581:5: error:   initializing argument 1 of ‘std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&&, const _Tp&) [with _CharT = char, _Traits = std::char_traits<char>, _Tp = sict::Account]’
+w6_in_lab.cpp:26:12: error: no match for ‘operator+=’ in ‘value += A’
+w6_in_lab.cpp:27:12: error: no match for ‘operator+=’ in ‘value += B’
+w6_in_lab.cpp:28:12: error: no match for ‘operator+=’ in ‘value += C’

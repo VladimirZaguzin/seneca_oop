@@ -1,0 +1,27 @@
+Script started on Wed 30 Sep 2015 02:25:45 AM EDT
+fardad.soleimanloo@matrix:~/oop244/DEV-2157/workshops/Workshop3/at_home> a.out
+Weather Data
+=====================
+Days of Weather: 3
+Enter date: Oct/1
+Enter high: 15
+Enter low : 10
+Enter date: Nov/13
+Enter high: 10
+Enter low : 1.1
+Enter date: Dec/15
+Enter high: 5.5
+Enter low : -6.5
+
+Weather report:
+======================
+Oct/1_______15.0__10.0
+Nov/13______10.0___1.1
+Dec/15_______5.5__-6.5
+
+Enter the date you are looking for: Nov/13
+Low temperature : 1.1
+fardad.soleimanloo@matrix:~/oop244/DEV-2157/workshops/Workshop3/at_home> exit
+exit
+
+Script done on Wed 30 Sep 2015 02:27:00 AM EDT

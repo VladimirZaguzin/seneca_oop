@@ -1,0 +1,8 @@
+
+In line number 11 of your output:
+The output should be:
+EAC150, Year: 2015 semester: 1 Slot: 5
+But your output is: 
+EAC150, Year: 2015 semester: 5 Slot: 1
+                             ^
+-----------------------------|

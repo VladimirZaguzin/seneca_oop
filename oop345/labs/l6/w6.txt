@@ -1,0 +1,137 @@
+Script started on Mon 14 Mar 2016 10:46:07 PM EDT
+vzaguzin@matrix:~/oop/oop345/labs/l6> whoami
+vzaguzin
+vzaguzin@matrix:~/oop/oop345/labs/l6> cat w6.cpp Grades.h
+// Workshop 6 - Lambda Expression
+// w6.cpp
+
+#include <iostream>
+#include "Grades.h"
+
+int main(int argc, char* argv[]) {
+	if (argc != 2) {
+		std::cerr << argv[0] <<
+			": incorrect number of arguments\n";
+		std::cerr << "Usage: " << argv[0] << " file_name\n";
+		return 1;
+	}
+	try{
+
+	Grades grades(argv[1]);
+	auto letter = [](double grade)
+	{
+		if (grade >= 90 && grade <= 100) return "A+";
+		else if (grade >= 80 && grade <= 89) return "A";
+		else if (grade >= 75 && grade <= 79) return "B+";
+		else if (grade >= 70 && grade <= 74) return "B";
+		else if (grade >= 65 && grade <= 69) return "C+";
+		else if (grade >= 60 && grade <= 64) return "C";
+		else if (grade >= 55 && grade <= 59) return "D+";
+		else if (grade >= 50 && grade <= 54) return "D";
+		else return "F";
+
+	};
+
+
+
+
+
+	grades.displayGrades(std::cout, letter);
+}
+	catch (const std::string& msg)
+	{
+		std::cerr << msg << std::endl;
+	}
+	catch (const char* msg)
+	{
+		std::cerr << msg << std::endl;
+	}
+
+
+	std::cout << "Press any key to continue ... ";
+	std::cin.get();
+}#pragma once 
+#include <iomanip>
+#include <fstream>
+#include <string>
+
+class Grades{
+	size_t _size;
+	int* _numbers;
+	double* _grades;
+
+public:
+	Grades(const char* filename) :_size(0), _numbers(nullptr), _grades(nullptr)
+	{
+		std::fstream fs(filename);
+		if (!fs)
+			throw std::string("*** failed to open file ") + std::string(filename) + std::string(" ***");
+		std::string line;
+		size_t count = 0;
+
+		while (getline(fs, line))
+		{
+			count++;
+		}
+		fs.clear();
+		fs.seekg(0, std::ios::beg);
+    if (_numbers){
+      delete[] _numbers;
+    }
+    if(_grades){
+      delete[] _grades;
+    }
+    _numbers=nullptr;
+    _grades=nullptr;
+		_numbers = new (std::nothrow) int[count];
+		_grades = new (std::nothrow) double[count];
+		_size = count;
+
+		for (size_t i = 0; i < count; i++)
+		{
+			fs >> _numbers[i];
+			fs >> _grades[i];
+
+		}
+		fs.close();
+	}
+	virtual ~Grades()
+	{
+		delete[] _numbers;
+		delete[] _grades;
+	}
+
+	void displayGrades(std::ostream& os, const char*(*express)(double)) const
+	{
+		for (size_t i = 0; i < _size; i++)
+		{
+			os << _numbers[i] << ' ' << std::fixed << std::setprecision(2) << _grades[i] << ' ' << express(_grades[i]) << std::endl;
+
+		}
+	}
+};
+vzaguzin@matrix:~/oop/oop345/labs/l6> 
+vzaguzin@matrix:~/oop/oop345/labs/l6> vzaguzin@matrix:~/oop/oop345/labs/l6>
+bash: syntax error near unexpected token `newline'
+vzaguzin@matrix:~/oop/oop345/labs/l6> 
+vzaguzin@matrix:~/oop/oop345/labs/l6> vzaguzin@matrix:~/oop/oop345/labs/l6>
+bash: syntax error near unexpected token `newline'
+vzaguzin@matrix:~/oop/oop345/labs/l6> 
+vzaguzin@matrix:~/oop/oop345/labs/l6> vzaguzin@matrix:~/oop/oop345/labs/l6>
+bash: syntax error near unexpected token `newline'
+vzaguzin@matrix:~/oop/oop345/labs/l6> g++ -std="c++0x" -o w6 w6.cpp
+vzaguzin@matrix:~/oop/oop345/labs/l6> w6 w6.dat
+1022342 67.40 C+
+1024567 73.50 B
+2031456 79.30 F
+6032144 53.50 D
+1053250 92.10 A+
+3026721 86.50 A
+7420134 62.30 C
+9762314 58.70 D+
+6521045 34.60 F
+Press any key to continue ... 
+vzaguzin@matrix:~/oop/oop345/labs/l6> exit
+exit
+
+Script done on Mon 14 Mar 2016 10:47:08 PM EDT

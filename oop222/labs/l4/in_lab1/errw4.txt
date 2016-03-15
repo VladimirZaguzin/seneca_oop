@@ -1,0 +1,2 @@
+Enrollment.cpp: In member function ‘void sict::Enrollment::set(const char*, const char*, int, int, int, bool)’:
+Enrollment.cpp:25:25: error: ‘strncpy’ was not declared in this scope
